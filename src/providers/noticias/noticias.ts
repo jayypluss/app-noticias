@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { DatabaseProvider } from "../database/database";
-import {Platform} from "ionic-angular";
+import { Platform } from "ionic-angular";
+import {Observable, Observer} from "rxjs";
 
 @Injectable()
 export class NoticiasProvider {
@@ -58,15 +59,21 @@ export class NoticiasProvider {
     }
   }
 
-  async obterNoticias(): Promise<any> {
-    let noticias: Noticia[] = [];
-    let resultadoDb = await this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).catch(reason => {
-      console.log(`ERRO em obterNoticias(): `, reason);
+  obterNoticias(): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      let noticias: Noticia[] = [];
+      setTimeout(() => {
+        this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(resultadoDb => {
+          if (resultadoDb && resultadoDb.rows && resultadoDb.rows.length && resultadoDb.rows.length > 0) {
+            for (let i = 0; i < resultadoDb.rows.length; i++) noticias.push(resultadoDb.rows.item(i));
+          }
+          observer.next(noticias);
+          observer.complete();
+        }).catch(reason => {
+          console.log("Error:", reason);
+        });
+      }, 500);
     });
-
-    if (resultadoDb && resultadoDb.rows && resultadoDb.rows.length && resultadoDb.rows.length > 0) {
-      for (let i = 0; i < resultadoDb.rows.length; i++) noticias.push(resultadoDb.rows.item(i));
-    }
-    return Promise.resolve(noticias);
   }
+
 }

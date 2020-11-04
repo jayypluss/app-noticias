@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, forwardRef, Inject} from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
@@ -12,8 +12,8 @@ export class NovaNoticiaPage {
   texto: string = "";
 
   constructor(public navCtrl: NavController,
-              private noticiasProvider: NoticiasProvider,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private noticiasProvider: NoticiasProvider) {
 
   }
 

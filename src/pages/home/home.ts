@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {InfiniteScroll, NavController, Platform, Refresher} from 'ionic-angular';
+import { InfiniteScroll, NavController, Platform, Refresher } from 'ionic-angular';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
@@ -12,18 +12,26 @@ export class HomePage {
   urlBaseImagem: string = `assets/imgs/`;
 
   constructor(public navCtrl: NavController,
-              private noticiasProvider: NoticiasProvider,
-              private platform: Platform) {
+              private platform: Platform,
+              private noticiasProvider: NoticiasProvider) {
   }
 
-  ionViewDidEnter() {
-    this.recarregarDados(null);
+  ionViewWillEnter() {
+    this.platform.ready().then(async () => {
+      this.recarregarDados(null);
+    });
   }
 
-  async recarregarDados(refresher?: Refresher) {
+  private recarregarDados(refresher?: Refresher) {
     console.log(`recarregarDados, $evento: `, refresher);
     // this.noticias = this.noticiasProvider.criarMockDeNoticias();
-    this.noticias = await this.noticiasProvider.obterNoticias();
+    this.noticiasProvider.obterNoticias().subscribe(value => {
+      this.noticias = value;
+      if (refresher) {
+        refresher.complete();
+      }
+    });
+
     if (refresher) {
       refresher.complete();
     }
