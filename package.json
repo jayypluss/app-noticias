@@ -1,7 +1,7 @@
 {
-  "name": "code7-test",
+  "name": "app-noticias",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "@jayypluss",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -21,8 +21,16 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/core": "4.20.0",
     "@ionic-native/splash-screen": "4.20.0",
+    "@ionic-native/sqlite": "^4.20.0",
     "@ionic-native/status-bar": "4.20.0",
-    "@ionic/storage": "2.2.0",
+    "cordova-android": "7.1.4",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^4.2.1",
+    "cordova-plugin-splashscreen": "^5.0.4",
+    "cordova-plugin-statusbar": "^2.4.3",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-sqlite-storage": "^2.6.0",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
@@ -33,5 +41,21 @@
     "@ionic/app-scripts": "3.2.4",
     "typescript": "2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "App de notícias",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-sqlite-storage": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

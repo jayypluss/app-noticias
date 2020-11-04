@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Nova Notícia
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item class="caixa-de-texto">
+    <ion-label floating>Autor</ion-label>
+    <ion-textarea type="text" [(ngModel)]="autor" ng-class="{'has-warning': form.name.$touched && people.name.length === 0}"></ion-textarea>
+  </ion-item>
+  <ion-item class="caixa-de-texto">
+    <ion-label floating>Título</ion-label>
+    <ion-textarea type="text" [(ngModel)]="titulo"></ion-textarea>
+  </ion-item>
+  <ion-item class="caixa-de-texto">
+    <ion-label floating>Texto</ion-label>
+    <ion-textarea type="text" [(ngModel)]="texto"></ion-textarea>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <button ion-button (click)="aoClicarPublicar()" class="botao-publicar" >
+    <label class="label-publicar">
+      PUBLICAR
+    </label>
+    <ion-icon name="paper-plane" class="send-icon"></ion-icon>
+  </button>
+</ion-footer>
