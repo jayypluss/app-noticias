@@ -10,7 +10,7 @@ import { PesquisaPage } from "../pages/pesquisa/pesquisa";
 import { NovaNoticiaPage } from "../pages/nova-noticia/nova-noticia";
 import { NoticiasProvider } from '../providers/noticias/noticias';
 import { DatabaseProvider } from '../providers/database/database';
-import {SQLite} from "@ionic-native/sqlite";
+import { SQLite } from "@ionic-native/sqlite";
 
 @NgModule({
   declarations: [

@@ -6,7 +6,6 @@ import { DatabaseProvider } from "../database/database";
 export class NoticiasProvider {
 
   constructor(private database: DatabaseProvider) {
-    console.log('Hello NoticiasProvider Provider');
   }
 
   criarMockDeNoticias() : Noticia[] {
@@ -57,4 +56,17 @@ export class NoticiasProvider {
     }
   }
 
+  async obterNoticias(): Promise<Noticia[]> {
+    let noticias: Noticia[] = [];
+    this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(resultado => {
+      if (resultado && resultado.rows && resultado.rows.length && resultado.rows.length > 0) {
+        for (let i = 0; i < resultado.rows.length; i++) noticias.push(resultado.rows.item(i));
+      }
+      return Promise.resolve(noticias);
+    }).catch(reason => {
+      console.log(`ERRO em obterNoticias(): `, reason);
+      return Promise.resolve(noticias);
+    });
+    return Promise.resolve(noticias);
+  }
 }

@@ -15,13 +15,14 @@ export class HomePage {
               private noticiasProvider: NoticiasProvider) {
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.recarregarDados(null);
   }
 
-  recarregarDados(refresher?: Refresher) {
+  async recarregarDados(refresher?: Refresher) {
     console.log(`recarregarDados, $evento: `, refresher);
-    this.noticias = this.noticiasProvider.criarMockDeNoticias();
+    // this.noticias = this.noticiasProvider.criarMockDeNoticias();
+    this.noticias = await this.noticiasProvider.obterNoticias();
     if (refresher) {
       refresher.complete();
     }
