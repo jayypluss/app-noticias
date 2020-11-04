@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InfiniteScroll, NavController, Refresher } from 'ionic-angular';
+import {InfiniteScroll, NavController, Platform, Refresher} from 'ionic-angular';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
@@ -12,7 +12,8 @@ export class HomePage {
   urlBaseImagem: string = `assets/imgs/`;
 
   constructor(public navCtrl: NavController,
-              private noticiasProvider: NoticiasProvider) {
+              private noticiasProvider: NoticiasProvider,
+              private platform: Platform) {
   }
 
   ionViewDidEnter() {

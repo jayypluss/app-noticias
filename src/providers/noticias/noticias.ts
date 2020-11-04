@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { DatabaseProvider } from "../database/database";
+import {Platform} from "ionic-angular";
 
 @Injectable()
 export class NoticiasProvider {
 
-  constructor(private database: DatabaseProvider) {
+  constructor(private database: DatabaseProvider,
+              private platform: Platform) {
   }
 
   criarMockDeNoticias() : Noticia[] {
@@ -56,17 +58,15 @@ export class NoticiasProvider {
     }
   }
 
-  async obterNoticias(): Promise<Noticia[]> {
+  async obterNoticias(): Promise<any> {
     let noticias: Noticia[] = [];
-    this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(resultado => {
-      if (resultado && resultado.rows && resultado.rows.length && resultado.rows.length > 0) {
-        for (let i = 0; i < resultado.rows.length; i++) noticias.push(resultado.rows.item(i));
-      }
-      return Promise.resolve(noticias);
-    }).catch(reason => {
+    let resultadoDb = await this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).catch(reason => {
       console.log(`ERRO em obterNoticias(): `, reason);
-      return Promise.resolve(noticias);
     });
+
+    if (resultadoDb && resultadoDb.rows && resultadoDb.rows.length && resultadoDb.rows.length > 0) {
+      for (let i = 0; i < resultadoDb.rows.length; i++) noticias.push(resultadoDb.rows.item(i));
+    }
     return Promise.resolve(noticias);
   }
 }

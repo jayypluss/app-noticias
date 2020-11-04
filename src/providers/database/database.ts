@@ -15,7 +15,9 @@ export class DatabaseProvider {
     this.db = null;
   }
 
-  public getDb = (): SQLiteObject => this.db;
+  public getDb(): SQLiteObject {
+    return this.db;
+  }
 
   public criarDatabase(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
