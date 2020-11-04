@@ -4,4 +4,5 @@ export class Noticia {
   titulo: string;
   idImagem: string;
   texto: string;
+  dataCriacao: number;
 }

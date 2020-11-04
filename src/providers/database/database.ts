@@ -52,7 +52,8 @@ export class DatabaseProvider {
               idAutor integer NOT NULL,
               titulo text NOT NULL,
               idImagem text,
-              texto text NOT NULL
+              texto text NOT NULL,
+              dataCriacao integer NOT NULL
             )`;
   }
 

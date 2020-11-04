@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject} from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
@@ -25,6 +25,9 @@ export class NovaNoticiaPage {
       });
     }
     this.apresentarMensagemResultado(resultado);
+    if (resultado) {
+      this.limparCampos();
+    }
   }
 
   private apresentarMensagemResultado(resultado: any) {
@@ -40,5 +43,11 @@ export class NovaNoticiaPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  private limparCampos() {
+    this.autor = "";
+    this.titulo = "";
+    this.texto = "";
   }
 }

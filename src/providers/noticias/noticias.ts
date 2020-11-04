@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { DatabaseProvider } from "../database/database";
-import { Platform } from "ionic-angular";
-import {Observable, Observer} from "rxjs";
+import { Observable, Observer } from "rxjs";
 
 @Injectable()
 export class NoticiasProvider {
 
-  constructor(private database: DatabaseProvider,
-              private platform: Platform) {
+  constructor(private database: DatabaseProvider) {
   }
 
   criarMockDeNoticias() : Noticia[] {
@@ -49,9 +47,10 @@ export class NoticiasProvider {
 
     if (autorResultado && autorResultado.rows && autorResultado.rows.length && autorResultado.rows.length > 0) {
       autorResultado = autorResultado.rows.item(0);
-      let params = [ autorResultado.id, titulo, texto ];
+      let millisHoje = Date.now();
+      let params = [ autorResultado.id, titulo, texto, millisHoje ];
       return this.database.getDb()
-        .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto) VALUES (?, ?, ?)`, params).catch(reason => {
+        .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto, dataCriacao) VALUES (?, ?, ?, ?)`, params).catch(reason => {
           console.log(`ERRO em cadastrarNoticiaNoDb(${autor}, ${titulo}, ${texto}): `, reason);
         });
     } else {
