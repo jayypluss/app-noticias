@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
-import {NoticiasProvider} from "../../providers/noticias/noticias";
+import { AlertController, NavController } from 'ionic-angular';
+import { NoticiasProvider } from "../../providers/noticias/noticias";
 
 @Component({
   selector: 'page-nova-noticia',
@@ -20,7 +20,9 @@ export class NovaNoticiaPage {
   async aoClicarPublicar() {
     let resultado;
     if (this.autor.length > 0 && this.titulo.length > 0 && this.texto.length > 0) {
-      resultado = await this.noticiasProvider.cadastrarNoticiaNoDb(this.autor, this.titulo, this.texto);
+      resultado = await this.noticiasProvider.cadastrarNoticiaNoDb(this.autor, this.titulo, this.texto).catch(reason => {
+        console.log(`ERRO em aoClicarPublicar()`, reason)
+      });
     }
     this.apresentarMensagemResultado(resultado);
   }

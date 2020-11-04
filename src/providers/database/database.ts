@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {SQLite, SQLiteObject} from "@ionic-native/sqlite";
-import {Observable, Observer} from 'rxjs';
+import { Injectable} from '@angular/core';
+import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
+import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class DatabaseProvider {

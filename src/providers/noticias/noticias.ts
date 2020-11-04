@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Noticia } from "../../models/noticia/noticia.model";
-import {DatabaseProvider} from "../database/database";
+import { DatabaseProvider } from "../database/database";
 
 @Injectable()
 export class NoticiasProvider {
@@ -25,13 +25,17 @@ export class NoticiasProvider {
   }
 
   private procurarAutorDb(autor: string): Promise<any> {
-    return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE nome = ?`, [autor]);
+    return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE nome = ?`, [autor]).catch(reason => {
+      console.log(`ERRO em procurarAutorDb(${autor}): `, reason);
+    });
   }
 
   private inserirNovoAutorDb(autor: string): Promise<any> {
     let params = [ autor ];
     return this.database.getDb()
-      .executeSql(`INSERT INTO AUTORES (nome) VALUES (?)`, params);
+      .executeSql(`INSERT INTO AUTORES (nome) VALUES (?)`, params).catch(reason => {
+        console.log(`ERRO em inserirNovoAutorDb(${autor}): `, reason);
+      });
   }
 
   async cadastrarNoticiaNoDb(autor: string, titulo: string, texto: string): Promise<any> {
@@ -41,11 +45,13 @@ export class NoticiasProvider {
 
     autorResultado = await this.procurarAutorDb(autor);
 
-    if (autorResultado && autorResultado.rows && autorResultado.rows.length && autorResultado.length > 0) {
+    if (autorResultado && autorResultado.rows && autorResultado.rows.length && autorResultado.rows.length > 0) {
       autorResultado = autorResultado.rows.item(0);
       let params = [ autorResultado.id, titulo, texto ];
       return this.database.getDb()
-        .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto) VALUES (?, ?, ?)`, params);
+        .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto) VALUES (?, ?, ?)`, params).catch(reason => {
+          console.log(`ERRO em cadastrarNoticiaNoDb(${autor}, ${titulo}, ${texto}): `, reason);
+        });
     } else {
       return Promise.reject(autorResultado);
     }
