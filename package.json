@@ -33,6 +33,7 @@
     "cordova-sqlite-storage": "^2.6.0",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
+    "lint": "0.7.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
@@ -59,6 +60,7 @@
     ]
   },
   "config": {
+    "ionic_enable_lint": true,
     "ionic_webpack": "./config/webpack.config.js",
     "ionic_generate_source_map": "true",
     "ionic_source_map_type": "#inline-source-map",

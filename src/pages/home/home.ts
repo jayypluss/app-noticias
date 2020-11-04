@@ -8,6 +8,7 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  // TODO excluir e editar post
   // TODO estilizar
   noticias: Noticia[] = [];
   urlBaseImagem: string = `assets/imgs/`;
