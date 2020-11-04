@@ -26,26 +26,45 @@ export class PesquisaPage {
     this.focarNaBarraDePesquisa();
   }
 
+  /**
+   * Ativa o foco na 'Barra de Pesquisa'.
+   * @method focarNaBarraDePesquisa
+   */
   focarNaBarraDePesquisa(): void {
     setTimeout(() => {
       this.barraDePesquisa.setFocus();
     }, 500);
   }
 
-  aoPressionarTecla($event: UIEvent) {
-    console.log($event);
+  /**
+   * Ação realizada ao pressionar alguma tecla do input (como o teclado).
+   * @param {UIEvent} evento da UI disparado
+   * @method aoPressionarTecla
+   */
+  aoPressionarTecla(evento: UIEvent) {
+    console.log(evento);
     console.log(this.termoPesquisa);
     this.iniciouPesquisa = true;
     console.log( new Date().getMilliseconds() );
   }
 
+  /**
+   * Ação realizada ao cancelar a pesquisa.
+   * @method aoCancelar
+   */
   aoCancelar($event: UIEvent) {
     this.termoPesquisa = '';
     console.log($event);
     console.log(this.termoPesquisa);
   }
 
-  dataFormatada(dataCriacao: number) {
-    return new Date(dataCriacao).toDateString();
+  /**
+   * Retorna a data em millis formatada para String.
+   * @param {number} dataMillis
+   * @method dataFormatada
+   * @return {string} com a data em millis formatada
+   */
+  dataFormatada(dataMillis: number): string {
+    return new Date(dataMillis).toDateString();
   }
 }

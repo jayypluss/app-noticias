@@ -9,6 +9,11 @@ export class NoticiasProvider {
   constructor(private database: DatabaseProvider) {
   }
 
+  /**
+   * Retorna um array de objetos de notícia mocados.
+   * @method criarMockDeNoticias
+   * @return {Noticia[]} array de notícias
+   */
   criarMockDeNoticias() : Noticia[] {
     let mockArray = [];
     for (let i = 0; i < 15; i++) {
@@ -24,26 +29,47 @@ export class NoticiasProvider {
     return mockArray;
   }
 
-  private procurarAutorDb(autor: string): Promise<any> {
-    return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE nome = ?`, [autor]).catch(reason => {
-      console.log(`ERRO em procurarAutorDb(${autor}): `, reason);
+  /**
+   * Retorna do DB um autor.
+   * @method procurarAutorDb
+   * @param {string} nome do autor a ser pesquisado
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  private procurarAutorDb(nome: string): Promise<any> {
+    // TODO refatorar busca e insterção de autor (adicionar validações)
+    return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE nome = ?`, [nome]).catch(reason => {
+      console.log(`ERRO em procurarAutorDb(${nome}): `, reason);
     });
   }
 
-  private inserirNovoAutorDb(autor: string): Promise<any> {
-    let params = [ autor ];
+  /**
+   * Insere no DB um autor.
+   * @method inserirNovoAutorDb
+   * @param {string} nome do autor a ser inserido
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  private inserirNovoAutorDb(nome: string): Promise<any> {
+    let params = [ nome ];
     return this.database.getDb()
       .executeSql(`INSERT INTO AUTORES (nome) VALUES (?)`, params).catch(reason => {
-        console.log(`ERRO em inserirNovoAutorDb(${autor}): `, reason);
+        console.log(`ERRO em inserirNovoAutorDb(${nome}): `, reason);
       });
   }
 
-  async cadastrarNoticiaNoDb(autor: string, titulo: string, texto: string): Promise<any> {
-    let autorResultado = await this.procurarAutorDb(autor);
+  /**
+   * Cadastra nova notícia no Banco de Dados.
+   * @method cadastrarNoticiaNoDb
+   * @param {string} nomeAutor nome do autor
+   * @param {string} titulo do autor a ser inserido
+   * @param {string} texto do autor a ser inserido
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  async cadastrarNoticiaNoDb(nomeAutor: string, titulo: string, texto: string): Promise<any> {
+    let autorResultado = await this.procurarAutorDb(nomeAutor);
     if (!autorResultado || !autorResultado.rows || !autorResultado.rows.length || autorResultado.rows.length < 1)
-      autorResultado = this.inserirNovoAutorDb(autor);
+      autorResultado = this.inserirNovoAutorDb(nomeAutor);
 
-    autorResultado = await this.procurarAutorDb(autor);
+    autorResultado = await this.procurarAutorDb(nomeAutor);
 
     if (autorResultado && autorResultado.rows && autorResultado.rows.length && autorResultado.rows.length > 0) {
       autorResultado = autorResultado.rows.item(0);
@@ -51,14 +77,20 @@ export class NoticiasProvider {
       let params = [ autorResultado.id, titulo, texto, millisHoje ];
       return this.database.getDb()
         .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto, dataCriacao) VALUES (?, ?, ?, ?)`, params).catch(reason => {
-          console.log(`ERRO em cadastrarNoticiaNoDb(${autor}, ${titulo}, ${texto}): `, reason);
+          console.log(`ERRO em cadastrarNoticiaNoDb(${nomeAutor}, ${titulo}, ${texto}): `, reason);
         });
     } else {
       return Promise.reject(autorResultado);
     }
   }
 
+  /**
+   * Busca listagem de notícias do DB.
+   * @method obterNoticias
+   * @return {Observable<any>} Observável com resultado do DB
+   */
   obterNoticias(): Observable<any> {
+    // TODO adicionar suporte a busca por limit/range (para ser utilizado com o infiniteScroll)
     return Observable.create((observer: Observer<any>) => {
       let noticias: Noticia[] = [];
       setTimeout(() => {

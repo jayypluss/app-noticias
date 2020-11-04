@@ -7,6 +7,8 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
   templateUrl: 'nova-noticia.html'
 })
 export class NovaNoticiaPage {
+  // TODO estilizar
+  // TODO adiconar validações no HTML
   autor: string = "";
   titulo: string = "";
   texto: string = "";
@@ -17,6 +19,10 @@ export class NovaNoticiaPage {
 
   }
 
+  /**
+   * Ação realizada ao clicar no botão 'Publicar'.
+   * @method aoClicarPublicar
+   */
   async aoClicarPublicar() {
     let resultado;
     if (this.autor.length > 0 && this.titulo.length > 0 && this.texto.length > 0) {
@@ -30,6 +36,11 @@ export class NovaNoticiaPage {
     }
   }
 
+  /**
+   * Apresenta alerta com mensagem de acordo com o resultado da opreação de 'Publicar'.
+   * @param {any} resultado da operação
+   * @method apresentarMensagemResultado
+   */
   private apresentarMensagemResultado(resultado: any) {
     let titulo = "Não foi possível cadastrar item.";
     let mensagem = "Verifique se há algum campo não preenchido.";
@@ -37,14 +48,18 @@ export class NovaNoticiaPage {
       titulo = "Item cadastrado com sucesso.";
       mensagem = null;
     }
-    var alert = this.alertCtrl.create({
+    var alerta = this.alertCtrl.create({
       title: titulo,
       subTitle: mensagem,
       buttons: ['OK']
     });
-    alert.present();
+    alerta.present();
   }
 
+  /**
+   * Limpa todos os campos.
+   * @method limparCampos
+   */
   private limparCampos() {
     this.autor = "";
     this.titulo = "";

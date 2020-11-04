@@ -1,3 +1,6 @@
+/**
+ * Model/Classe para objetos Noticia
+ */
 export class Noticia {
   id: number;
   idAutor: number;

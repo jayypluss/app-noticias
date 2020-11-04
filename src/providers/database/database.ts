@@ -10,15 +10,29 @@ export class DatabaseProvider {
   constructor(private sqlite: SQLite) {
   }
 
+  /**
+   * Fecha o Banco de Dados.
+   * @method fecharDb
+   */
   public async fecharDb() {
     this.db.close();
     this.db = null;
   }
 
+  /**
+   * Obtem o objeto do Banco de Dados.
+   * @method getDb
+   * @return {SQLiteObject} banco de dados
+   */
   public getDb(): SQLiteObject {
     return this.db;
   }
 
+  /**
+   * Cria os Bancos de Dados.
+   * @method criarDatabase
+   * @return {Observable<any>} Observável com o resultado
+   */
   public criarDatabase(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.sqlite.create({
@@ -45,6 +59,11 @@ export class DatabaseProvider {
     });
   }
 
+  /**
+   * Retorna string da query para criar Tabela de Noticias.
+   * @method criarTabelaNoticias
+   * @return {string} da query
+   */
   private criarTabelaNoticias(): string {
     return `CREATE TABLE IF NOT EXISTS NOTICIAS
             (
@@ -57,6 +76,11 @@ export class DatabaseProvider {
             )`;
   }
 
+  /**
+   * Retorna string da query para criar Tabela de Autores.
+   * @method criarTabelaAutores
+   * @return {string} da query
+   */
   private criarTabelaAutores(): string {
     return `CREATE TABLE IF NOT EXISTS AUTORES
             (

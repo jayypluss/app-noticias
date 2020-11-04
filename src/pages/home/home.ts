@@ -8,6 +8,7 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
   templateUrl: 'home.html'
 })
 export class HomePage {
+  // TODO estilizar
   noticias: Noticia[] = [];
   urlBaseImagem: string = `assets/imgs/`;
 
@@ -22,6 +23,11 @@ export class HomePage {
     });
   }
 
+  /**
+   * Carrega/Recarrega a listagem de dados, ou seja, a lista de notícias.
+   * @param {Refresher} refresher componente de refresh
+   * @method recarregarDados
+   */
   private recarregarDados(refresher?: Refresher) {
     console.log(`recarregarDados, $evento: `, refresher);
     // this.noticias = this.noticiasProvider.criarMockDeNoticias();
@@ -37,12 +43,23 @@ export class HomePage {
     }
   }
 
-  aoClicarNoticia(item: Noticia) {
-    console.log(`aoClicarNoticia, item: `, item);
+  /**
+   * Ação realizada ao clicar em uma notícia.
+   * @param {Noticia} noticia que foi clicada
+   * @method aoClicarNoticia
+   */
+  aoClicarNoticia(noticia: Noticia) {
+    console.log(`aoClicarNoticia, item: `, noticia);
   }
 
-  carregarMaisNoticias($evento: InfiniteScroll) {
-    console.log(`carregarMaisNoticias, $event: `, $evento);
+  /**
+   * Carrega mais notícias.
+   * @param {InfiniteScroll} infiniteScroll, o componente que foi acionado
+   * @method carregarMaisNoticias
+   */
+  carregarMaisNoticias(scroll: InfiniteScroll) {
+    // TODO utilizar infinite scroll
+    console.log(`carregarMaisNoticias, $event: `, scroll);
   }
 
 }
