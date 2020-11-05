@@ -3,6 +3,12 @@ import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 import { Noticia } from "../../models/noticia/noticia.model";
 
+enum RESULTADO_OPERACAO {
+  ERRO,
+  SUCESSO_CADASTRO,
+  SUCESSO_EDICAO
+}
+
 @Component({
   selector: 'page-criar-noticia',
   templateUrl: 'criar-noticia.html'
@@ -13,22 +19,25 @@ export class CriarNoticiaPage {
   autor: string = "";
   titulo: string = "";
   texto: string = "";
+  private editando: boolean;
+  private noticia: Noticia;
 
   constructor(public navParams: NavParams,
-                    private alertCtrl: AlertController,
-                    private noticiasProvider: NoticiasProvider) {
+              private navCtrl: NavController,
+              private alertCtrl: AlertController,
+              private noticiasProvider: NoticiasProvider) {
 
   }
 
   async ionViewWillEnter() {
-    let edit = this.navParams.get('edit');
-    if (edit) {
-      let noticia: Noticia = this.navParams.get('noticia');
-      let autorFromDb = await this.noticiasProvider.procurarAutorPorId(noticia.id);
+    this.editando = this.navParams.get('edit');
+    if (this.editando) {
+      this.noticia = this.navParams.get('noticia');
+      let autorFromDb = await this.noticiasProvider.procurarAutorPorId(this.noticia.idAutor);
       if (autorFromDb && autorFromDb.nome) {
         this.autor = autorFromDb.nome;
-        this.titulo = noticia.titulo;
-        this.texto = noticia.texto;
+        this.titulo = this.noticia.titulo;
+        this.texto = this.noticia.texto;
       }
     }
   }
@@ -38,15 +47,24 @@ export class CriarNoticiaPage {
    * @method aoClicarPublicar
    */
   async aoClicarPublicar() {
-    let resultado;
-    if (this.autor.length > 0 && this.titulo.length > 0 && this.texto.length > 0) {
-      resultado = await this.noticiasProvider.cadastrarNoticiaNoDb(this.autor, this.titulo, this.texto).catch(reason => {
-        console.log(`ERRO em aoClicarPublicar()`, reason)
+    if (this.editando) {
+      this.noticia.texto = this.texto;
+      this.noticia.titulo = this.titulo;
+      await this.noticiasProvider.editarNoticia(this.noticia).then(_ => {
+        this.apresentarMensagemResultado(RESULTADO_OPERACAO.SUCESSO_EDICAO);
+        if (this.navCtrl.canGoBack()) this.navCtrl.pop();
       });
-    }
-    this.apresentarMensagemResultado(resultado);
-    if (resultado) {
-      this.limparCampos();
+    } else {
+      if (this.autor.length > 0 && this.titulo.length > 0 && this.texto.length > 0) {
+        await this.noticiasProvider.cadastrarNoticiaNoDb(this.autor, this.titulo, this.texto).then(_ => {
+          this.apresentarMensagemResultado(RESULTADO_OPERACAO.SUCESSO_CADASTRO);
+          this.limparCampos();
+        }).catch(reason => {
+          console.log(`ERRO em aoClicarPublicar()`, reason)
+        });
+      } else {
+        this.apresentarMensagemResultado(RESULTADO_OPERACAO.ERRO);
+      }
     }
   }
 
@@ -55,16 +73,25 @@ export class CriarNoticiaPage {
    * @param {any} resultado da operação
    * @method apresentarMensagemResultado
    */
-  private apresentarMensagemResultado(resultado: any) {
-    let titulo = "Não foi possível cadastrar item.";
-    let mensagem = "Verifique se há algum campo não preenchido.";
-    if (resultado) {
-      titulo = "Item cadastrado com sucesso.";
-      mensagem = null;
+  private apresentarMensagemResultado(resultado: RESULTADO_OPERACAO) {
+    let tituloAlerta = "";
+    let mensagemAlerta = "";
+
+    switch (resultado) {
+      case RESULTADO_OPERACAO.ERRO:
+        tituloAlerta = "Não foi possível concluir essa operação.";
+        mensagemAlerta = "Verifique se há algum campo não preenchido.";
+        break;
+      case RESULTADO_OPERACAO.SUCESSO_EDICAO:
+        tituloAlerta = "Item editado com sucesso.";
+        break;
+      default:
+        tituloAlerta = "Item cadastrado com sucesso.";
+        break;
     }
     var alerta = this.alertCtrl.create({
-      title: titulo,
-      subTitle: mensagem,
+      title: tituloAlerta,
+      subTitle: mensagemAlerta,
       buttons: ['OK']
     });
     alerta.present();

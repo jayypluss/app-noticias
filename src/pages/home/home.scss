@@ -3,6 +3,15 @@ page-home {
     //padding-left: 0.5rem;
     //padding-right: 0.5rem;
   }
+  p.texto-sem-noticia {
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
   ion-item {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;

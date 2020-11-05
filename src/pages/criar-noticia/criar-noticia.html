@@ -9,7 +9,7 @@
 <ion-content padding>
   <ion-item class="caixa-de-texto">
     <ion-label floating>Autor</ion-label>
-    <ion-textarea type="text" [(ngModel)]="autor" ng-class="{'has-warning': form.name.$touched && people.name.length === 0}"></ion-textarea>
+    <ion-textarea type="text" [(ngModel)]="autor" ng-class="{'has-warning': form.name.$touched && people.name.length === 0}" [disabled]="editando"></ion-textarea>
   </ion-item>
   <ion-item class="caixa-de-texto">
     <ion-label floating>Título</ion-label>

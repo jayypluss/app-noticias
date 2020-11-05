@@ -12,6 +12,7 @@ export class PesquisaPage {
   @ViewChild('barraDePesquisa') barraDePesquisa : Searchbar;
   termoPesquisa: string = "";
   iniciouPesquisa: boolean = false;
+  todasNoticias: Noticia[];
   resultadoPesquisa: Noticia[];
 
   constructor(public navCtrl: NavController,
@@ -21,7 +22,8 @@ export class PesquisaPage {
 
   ionViewDidEnter() {
     this.noticiasProvider.obterNoticias().subscribe(noticias => {
-      this.resultadoPesquisa = noticias;
+      this.todasNoticias = noticias;
+      this.resultadoPesquisa = this.filtrarNoticias(this.termoPesquisa);
     });
     this.focarNaBarraDePesquisa();
   }
@@ -45,7 +47,21 @@ export class PesquisaPage {
     console.log(evento);
     console.log(this.termoPesquisa);
     this.iniciouPesquisa = true;
-    console.log( new Date().getMilliseconds() );
+    this.resultadoPesquisa = this.filtrarNoticias(this.termoPesquisa);
+  }
+
+  /**
+   * Realiza filtro de todas as notícias baseado no termo.
+   * @param {string} termoPesquisa termo a ser pesquisado
+   * @method filtrarNoticias
+   */
+  private filtrarNoticias(termoPesquisa: string): Noticia[] {
+    if (this.termoPesquisa == "") return this.todasNoticias;
+    return this.todasNoticias.filter(noticia => {
+      return noticia.titulo.toLowerCase().includes(termoPesquisa.toLowerCase())
+        || noticia.nomeAutor.toLowerCase().includes(termoPesquisa.toLowerCase())
+        || noticia.texto.toLowerCase().includes(termoPesquisa.toLowerCase());
+    });
   }
 
   /**

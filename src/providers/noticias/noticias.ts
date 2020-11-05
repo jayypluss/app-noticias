@@ -111,9 +111,14 @@ export class NoticiasProvider {
     return Observable.create((observer: Observer<any>) => {
       let noticias: Noticia[] = [];
       setTimeout(() => {
-        this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(resultadoDb => {
+        this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(async (resultadoDb) => {
           if (resultadoDb && resultadoDb.rows && resultadoDb.rows.length && resultadoDb.rows.length > 0) {
-            for (let i = 0; i < resultadoDb.rows.length; i++) noticias.push(resultadoDb.rows.item(i));
+            for (let i = 0; i < resultadoDb.rows.length; i++) {
+              let noticia = resultadoDb.rows.item(i);
+              let autor = await this.procurarAutorPorId(noticia.idAutor);
+              noticia.nomeAutor = autor.nome;
+              noticias.push(noticia);
+            }
           }
           observer.next(noticias);
           observer.complete();
@@ -141,15 +146,14 @@ export class NoticiasProvider {
   /**
    * Edita uma Notícia do DB.
    * @method editarNoticia
-   * @param {string} texto novo da Notícia
-   * @param {number} id da Notícia a ser editada
+   * @param {Noticia} noticia a ser alterada
    * @return {Promise<any>} Promise com resultado do DB
    */
-  editarNoticia(texto: string, id: number): Promise<any> {
-    let params = [ texto, id ];
+  editarNoticia(noticia: Noticia): Promise<any> {
+    let params = [ noticia.titulo, noticia.texto, noticia.id ];
     return this.database.getDb()
-      .executeSql(`UPDATE NOTICIAS SET texto = ? WHERE id = ?`, params).catch(reason => {
-        console.log(`ERRO em editarNoticia(${id}): `, reason);
+      .executeSql(`UPDATE NOTICIAS SET titulo = ?, texto = ? WHERE id = ?`, params).catch(reason => {
+        console.log(`ERRO em editarNoticia(${noticia}): `, reason);
       });
   }
 
