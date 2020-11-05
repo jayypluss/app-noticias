@@ -15,8 +15,7 @@ export class PesquisaPage {
   todasNoticias: Noticia[];
   resultadoPesquisa: Noticia[];
 
-  constructor(public navCtrl: NavController,
-              private noticiasProvider: NoticiasProvider) {
+  constructor(private noticiasProvider: NoticiasProvider) {
 
   }
 
@@ -44,8 +43,6 @@ export class PesquisaPage {
    * @method aoPressionarTecla
    */
   aoPressionarTecla(evento: UIEvent) {
-    console.log(evento);
-    console.log(this.termoPesquisa);
     this.iniciouPesquisa = true;
     this.resultadoPesquisa = this.filtrarNoticias(this.termoPesquisa);
   }
@@ -69,9 +66,8 @@ export class PesquisaPage {
    * @method aoCancelar
    */
   aoCancelar($event: UIEvent) {
-    this.termoPesquisa = '';
-    console.log($event);
-    console.log(this.termoPesquisa);
+    this.termoPesquisa = "";
+    this.iniciouPesquisa = false;
   }
 
   /**
