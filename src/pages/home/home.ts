@@ -9,6 +9,7 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
 })
 export class HomePage {
   // TODO excluir e editar post
+  // TODO criar página de detalhamento da notícia
   // TODO componentizar item de Notícia
   // TODO estilizar
   noticias: Noticia[] = [];

@@ -41,3 +41,22 @@ ion-list {
   }
 }
 
+ion-tabs {
+  .tabbar {
+    background: #665c8d !important;
+  }
+  .tab-button .tab-button-icon {
+    color: #817aae !important;
+  }
+  .tab-button[aria-selected=true] .tab-button-icon {
+    color: #ffffff !important;
+    opacity: 0.75;
+  }
+  .tab-button .tab-button-text {
+    color: #817aae !important;
+  }
+  .tab-button[aria-selected=true] .tab-button-text {
+    color: #ffffff !important;
+    opacity: 0.75;
+  }
+}
