@@ -113,7 +113,7 @@ export class NoticiasProvider {
       setTimeout(() => {
         this.database.getDb().executeSql(`SELECT * FROM NOTICIAS`, []).then(async (resultadoDb) => {
           if (resultadoDb && resultadoDb.rows && resultadoDb.rows.length && resultadoDb.rows.length > 0) {
-            for (let i = 0; i < resultadoDb.rows.length; i++) {
+            for (let i = resultadoDb.rows.length-1; i >= 0; i--) {
               let noticia = resultadoDb.rows.item(i);
               let autor = await this.procurarAutorPorId(noticia.idAutor);
               noticia.nomeAutor = autor.nome;
