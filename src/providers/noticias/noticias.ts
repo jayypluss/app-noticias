@@ -107,4 +107,33 @@ export class NoticiasProvider {
     });
   }
 
+  /**
+   * Exclui uma Notícia do DB.
+   * @method excluirNoticia
+   * @param {number} id da Notícia a ser excluída
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  private excluirNoticia(id: number): Promise<any> {
+    let params = [ id ];
+    return this.database.getDb()
+      .executeSql(`DELETE FROM NOTICIAS WHERE id = ?`, params).catch(reason => {
+        console.log(`ERRO em excluirNoticia(${id}): `, reason);
+      });
+  }
+
+  /**
+   * Edita uma Notícia do DB.
+   * @method editarNoticia
+   * @param {string} texto novo da Notícia
+   * @param {number} id da Notícia a ser editada
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  private editarNoticia(texto: string, id: number): Promise<any> {
+    let params = [ texto, id ];
+    return this.database.getDb()
+      .executeSql(`UPDATE NOTICIAS SET texto = ? WHERE id = ?`, params).catch(reason => {
+        console.log(`ERRO em editarNoticia(${id}): `, reason);
+      });
+  }
+
 }

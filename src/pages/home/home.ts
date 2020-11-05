@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InfiniteScroll, NavController, Platform, Refresher } from 'ionic-angular';
+import { InfiniteScroll, Platform, Refresher } from 'ionic-angular';
 import { Noticia } from "../../models/noticia/noticia.model";
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
@@ -9,12 +9,12 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
 })
 export class HomePage {
   // TODO excluir e editar post
+  // TODO componentizar item de Notícia
   // TODO estilizar
   noticias: Noticia[] = [];
   urlBaseImagem: string = `assets/imgs/`;
 
-  constructor(public navCtrl: NavController,
-              private platform: Platform,
+  constructor(private platform: Platform,
               private noticiasProvider: NoticiasProvider) {
   }
 
@@ -61,6 +61,24 @@ export class HomePage {
   carregarMaisNoticias(scroll: InfiniteScroll) {
     // TODO utilizar infinite scroll
     console.log(`carregarMaisNoticias, $event: `, scroll);
+  }
+
+  /**
+   * Ação realizada ao clicar em editar uma Notícia.
+   * @method carregarMaisNoticias
+   * @param {any} evento
+   */
+  aoClicarEditar(evento: any) {
+    console.log(`aoClicarEditar, evento: `, evento);
+  }
+
+  /**
+   * Ação realizada ao clicar em excluir uma Notícia.
+   * @method aoClicarExcluir
+   * @param {any} evento
+   */
+  aoClicarExcluir(evento: any) {
+    console.log(`aoClicarExcluir, evento: `, evento);
   }
 
 }

@@ -1,27 +1,33 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Notícias</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-refresher (ionRefresh)="recarregarDados($event)">
     <ion-refresher-content refreshingSpinner="circles"></ion-refresher-content>
   </ion-refresher>
-  <ion-list>
-    <ion-item *ngFor="let item of noticias">
-      <ion-card (click)="aoClicarNoticia(item)">
-        <ion-card-content no-padding>
+  <ion-list *ngIf="noticias && noticias.length > 0; else semNoticias">
+    <ion-item *ngFor="let item of noticias" (click)="aoClicarNoticia(item)">
+      <div class="cabecalho">
+        <div class="container-titulo">
           <h1>{{ item.titulo }}</h1>
-          <h3>{{ item.idAutor }}</h3>
-          <img *ngIf="item.idImagem" src="{{ urlBaseImagem }}{{ item.idImagem}} ">
-          <p>{{ item.texto }}</p>
-        </ion-card-content>
-      </ion-card>
+          <button>
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </div>
+        <h3>{{ item.idAutor }}</h3>
+      </div>
+      <img *ngIf="item.idImagem" src="{{ urlBaseImagem }}{{ item.idImagem}} ">
+      <p>{{ item.texto }}</p>
     </ion-item>
   </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="carregarMaisNoticias($event)" *ngIf="noticias && noticias.length > 0">
-    <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ng-template #semNoticias>
+    <p> Nenhuma notícia a ser exibida. </p>
+  </ng-template>
+<!--  <ion-infinite-scroll threshold="100px" (ionInfinite)="carregarMaisNoticias($event)" *ngIf="noticias && noticias.length > 0">-->
+<!--    <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>-->
+<!--  </ion-infinite-scroll>-->
 </ion-content>

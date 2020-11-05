@@ -3,10 +3,10 @@ import { AlertController, NavController } from 'ionic-angular';
 import { NoticiasProvider } from "../../providers/noticias/noticias";
 
 @Component({
-  selector: 'page-nova-noticia',
-  templateUrl: 'nova-noticia.html'
+  selector: 'page-criar-noticia',
+  templateUrl: 'criar-noticia.html'
 })
-export class NovaNoticiaPage {
+export class CriarNoticiaPage {
   // TODO estilizar
   // TODO adiconar validações no HTML
   autor: string = "";

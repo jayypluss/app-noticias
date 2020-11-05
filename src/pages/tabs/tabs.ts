@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { PesquisaPage } from "../pesquisa/pesquisa";
-import { NovaNoticiaPage } from "../nova-noticia/nova-noticia";
+import { CriarNoticiaPage } from "../criar-noticia/criar-noticia";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -21,7 +21,7 @@ export class TabsPage {
   /**
    * Página de 'Criar Nova Notícia'
    */
-  tab3Root = NovaNoticiaPage;
+  tab3Root = CriarNoticiaPage;
 
   constructor() {
 
