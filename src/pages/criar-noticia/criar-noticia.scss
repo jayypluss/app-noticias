@@ -1,6 +1,6 @@
 page-criar-noticia {
   ion-item {
-    background-color: #dcd9e4 !important;
+    background-color: map-get($colors, primary) !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
   }
@@ -17,27 +17,35 @@ page-criar-noticia {
   //  color: #ffffff !important;
   //  opacity: 0.9;
   //}
+  .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: map-get($colors, highlight) !important;
+    -webkit-box-shadow: inset 0 -1px 0 0 map-get($colors, highlight) !important;
+    box-shadow: inset 0 -1px 0 0 map-get($colors, highlight) !important;
+  }
   ion-item.item-input-has-focus {
     .item-inner  {
-      border-bottom-color: #47395c !important;
-      -webkit-box-shadow: inset 0 -1px 0 0 #47395c;
-      box-shadow: inset 0 -1px 0 0 #47395c;
+      border-bottom-color: map-get($colors, dark) !important;
+      -webkit-box-shadow: inset 0 -1px 0 0 map-get($colors, dark) !important;
+      box-shadow: inset 0 -1px 0 0 map-get($colors, dark) !important;
       opacity: 0.9;
     }
     .label[floating] {
-      color: rgba(71, 57, 92, 0.9) !important;
+      color: map-get($colors, dark) !important;
+      opacity: 0.9 !important;
     }
   }
   button {
-    background-color: #9c97c0 !important;
+    background-color: map-get($colors, light) !important;
     width: 100%;
     height: 5rem !important;
     margin: 0 !important;
     label {
+      color: white !important;
       padding-right: 0.75rem;
       font-size: 2rem;
     }
     ion-icon {
+      color: white !important;
       padding-left: 0.75rem;
       font-size: 2rem;
     }

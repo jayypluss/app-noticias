@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 ion-content {
-  background-color: #47395c !important;
+  background-color: map-get($colors, dark) !important;
 }
 
 ion-navbar {
@@ -27,7 +27,7 @@ ion-navbar {
     }
   }
   .toolbar-background {
-    background-color: #665c8d;
+    background-color: map-get($colors, tertiary);
   }
   .toolbar-title {
     color: #ffffff;
@@ -39,27 +39,27 @@ ion-navbar {
 }
 
 ion-list {
-  background-color: #dcd9e4;
+  background-color: map-get($colors, primary);
   margin-left: 1rem !important;
   margin-right: 1rem !important;
   ion-item {
-    background-color: #dcd9e4 !important;
+    background-color: map-get($colors, primary) !important;
   }
 }
 
 ion-tabs {
   .tabbar {
-    background: #665c8d !important;
+    background: map-get($colors, tertiary) !important;
   }
   .tab-button .tab-button-icon {
-    color: #817aae !important;
+    color: map-get($colors, secondary) !important;
   }
   .tab-button[aria-selected=true] .tab-button-icon {
     color: #ffffff !important;
     opacity: 0.75;
   }
   .tab-button .tab-button-text {
-    color: #817aae !important;
+    color: map-get($colors, secondary) !important;
   }
   .tab-button[aria-selected=true] .tab-button-text {
     color: #ffffff !important;

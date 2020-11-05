@@ -1,6 +1,6 @@
 page-detalhe-noticia {
   ion-content {
-    background-color: #dcd9e4 !important;
+    background-color: map-get($colors, primary) !important;
   }
   .cabecalho {
     padding-top: 0.75rem;
@@ -9,7 +9,7 @@ page-detalhe-noticia {
       display: inline-flex;
       width: 100%;
       h1 {
-        color: #817aae;
+        color: map-get($colors, secondary);
         font-weight: 600;
         font-size: 3rem;
         width: 90%;
@@ -19,11 +19,11 @@ page-detalhe-noticia {
         width: 10%;
         background: transparent;
         font-size: 2rem;
-        color: #817aae;
+        color: map-get($colors, secondary);
       }
     }
     h3 {
-      color: #817aae;
+      color: map-get($colors, secondary);
       padding-top: 0;
     }
   }

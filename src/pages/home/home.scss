@@ -1,22 +1,22 @@
 page-home {
   ion-content.has-refresher > .scroll-content {
-  //  background-color: #dcd9e4;
+  //  background-color: map-get($colors, primary);
     border-top: 0;
   }
 
   ion-refresher-content {
     .refresher-pulling-icon {
-      color: #9c97c0;
+      color: map-get($colors, light);
     }
     .refresher-refreshing .spinner-ios line,
     .refresher-refreshing .spinner-ios-small line,
     .refresher-refreshing .spinner-crescent circle {
-      stroke: #9c97c0;
+      stroke: map-get($colors, light);
     }
     .refresher-refreshing .spinner-bubbles circle,
     .refresher-refreshing .spinner-circles circle,
     .refresher-refreshing .spinner-dots circle {
-      fill: #9c97c0;
+      fill: map-get($colors, light);
     }
   }
   ion-list {
@@ -39,7 +39,7 @@ page-home {
     min-height: 15rem !important;
     .input-wrapper {
       display: block;
-      border-bottom: 1px solid #9c97c0 !important;
+      border-bottom: 1px solid map-get($colors, light) !important;
     }
     .item-inner {
       padding: 0 !important;
@@ -54,7 +54,7 @@ page-home {
         display: inline-flex;
         width: 100%;
         h1 {
-          color: #817aae;
+          color: map-get($colors, secondary);
           font-weight: 600;
           font-size: 2rem;
           width: 90%;
@@ -64,11 +64,11 @@ page-home {
           width: 10%;
           background: transparent;
           font-size: 2rem;
-          color: #817aae;
+          color: map-get($colors, secondary);
         }
       }
       h3 {
-        color: #817aae;
+        color: map-get($colors, secondary);
         padding-top: 0.75rem;
       }
     }
