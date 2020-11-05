@@ -21,7 +21,7 @@
   </ion-item>
 </ion-content>
 <ion-footer>
-  <button ion-button (click)="aoClicarPublicar()" class="botao-publicar" >
+  <button ion-button (click)="aoClicarPublicar()" class="botao-publicar" [disabled]="autor.length < 1 || titulo.length < 1 || texto.length < 1">
     <label class="label-publicar">
       PUBLICAR
     </label>
