@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="cabecalho">
+    <div class="container-titulo">
+      <h1>{{ noticia.titulo }}</h1>
+      <button (click)="apresentarAcoes(noticia)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </div>
+    <h3>{{ noticia.nomeAutor }}</h3>
+  </div>
+  <img *ngIf="noticia.idImagem" src="{{ urlBaseImagem }}{{ noticia.idImagem}} ">
+  <p>{{ noticia.texto }}</p>
+</ion-content>

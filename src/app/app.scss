@@ -20,6 +20,12 @@ ion-content {
 }
 
 ion-navbar {
+  button.back-button.show-back-button {
+    color: #ffffff;
+    + div.toolbar-content ion-title div {
+      text-align: start;
+    }
+  }
   .toolbar-background {
     background-color: #665c8d;
   }

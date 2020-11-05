@@ -9,7 +9,7 @@
 <ion-content padding>
   <ion-searchbar #barraDePesquisa [(ngModel)]="termoPesquisa" (ionInput)="aoPressionarTecla($event)" (ionCancel)="aoCancelar($event)"></ion-searchbar>
   <ion-list *ngIf="this.iniciouPesquisa">
-    <ion-item *ngFor="let item of resultadoPesquisa">
+    <ion-item *ngFor="let item of resultadoPesquisa" (click)="aoClicarNoticia(item)">
       <h2>{{ item.titulo }}</h2>
       <p>{{ dataFormatada(item.dataCriacao) }}</p>
     </ion-item>

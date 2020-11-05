@@ -1,0 +1,47 @@
+page-detalhe-noticia {
+  ion-content {
+    background-color: #dcd9e4 !important;
+  }
+  .cabecalho {
+    padding-top: 0.75rem;
+    padding-left: 0.75rem;
+    .container-titulo {
+      display: inline-flex;
+      width: 100%;
+      h1 {
+        color: #817aae;
+        font-weight: 600;
+        font-size: 3rem;
+        width: 90%;
+        white-space: normal;
+      }
+      button {
+        width: 10%;
+        background: transparent;
+        font-size: 2rem;
+        color: #817aae;
+      }
+    }
+    h3 {
+      color: #817aae;
+      padding-top: 0;
+    }
+  }
+  img {
+    width: 100%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  p {
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+    text-align: justify;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+}

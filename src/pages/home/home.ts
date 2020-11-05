@@ -20,8 +20,8 @@ export class HomePage {
 
   constructor(private platform: Platform,
               private noticiasProvider: NoticiasProvider,
-              private actionSheetController: ActionSheetController,
-              private navCtrl: NavController) {
+              private navCtrl: NavController,
+              private actionSheetController: ActionSheetController) {
   }
 
   ionViewWillEnter() {
@@ -35,19 +35,24 @@ export class HomePage {
    * @param {Refresher} refresher componente de refresh
    * @method recarregarDados
    */
-  private recarregarDados(refresher?: Refresher) {
-    console.log(`recarregarDados, $evento: `, refresher);
+  private async recarregarDados(refresher?: Refresher) {
     // this.noticias = this.noticiasProvider.criarMockDeNoticias();
-    this.noticiasProvider.obterNoticias().subscribe(value => {
+    this.noticiasProvider.obterNoticias().subscribe(async (value) => {
       this.noticias = value;
       if (refresher) {
+        await this.delay(2000);
         refresher.complete();
       }
     });
 
     if (refresher) {
+      await this.delay(2000);
       refresher.complete();
     }
+  }
+
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
   /**
@@ -56,7 +61,7 @@ export class HomePage {
    * @method aoClicarNoticia
    */
   aoClicarNoticia(noticia: Noticia) {
-    console.log(`aoClicarNoticia, item: `, noticia);
+    this.navCtrl.push(`DetalheNoticiaPage`, {noticia: noticia});
   }
 
   /**
@@ -71,31 +76,29 @@ export class HomePage {
 
   /**
    * Ação realizada ao clicar em editar uma Notícia.
-   * @method carregarMaisNoticias
-   * @param {any} evento
+   * @method aoClicarEditar
+   * @param {Noticia} noticia
    */
-  async aoClicarEditar(noticia: any) {
-    console.log(`aoClicarEditar, evento: `, noticia);
+  async aoClicarEditar(noticia: Noticia) {
     await this.navCtrl.push(CriarNoticiaPage, {edit: true, noticia: noticia});
   }
 
   /**
    * Ação realizada ao clicar em excluir uma Notícia.
    * @method aoClicarExcluir
-   * @param {any} evento
+   * @param {Noticia} noticia
    */
   async aoClicarExcluir(noticia: Noticia) {
-    console.log(`aoClicarExcluir, evento: `, noticia);
     await this.noticiasProvider.excluirNoticia(noticia.id);
     this.recarregarDados(null);
   }
 
   /**
    * Exibe lista de ações para a Notícia selecionada.
-   * @method presentActionSheet
+   * @method apresentarAcoes
    * @param {Noticia} noticia selecionada
    */
-  async presentActionSheet(noticia: Noticia) {
+  async apresentarAcoes(noticia: Noticia) {
     const actionSheet = await this.actionSheetController.create({
       title: 'Ações',
       cssClass: 'action-sheet',
@@ -104,23 +107,19 @@ export class HomePage {
         icon: 'trash',
         role: 'destructive',
         handler: async () => {
-          console.log('Delete clicked');
           this.aoClicarExcluir(noticia);
         }
       }, {
         text: 'Editar',
         icon: 'create',
         handler: () => {
-          console.log('Editar clicked');
           this.aoClicarEditar(noticia);
         }
       }, {
         text: 'Cancelar',
         icon: 'close',
         role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
+        handler: () => {}
       }]
     });
     await actionSheet.present();

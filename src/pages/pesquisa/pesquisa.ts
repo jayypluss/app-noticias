@@ -15,14 +15,20 @@ export class PesquisaPage {
   todasNoticias: Noticia[];
   resultadoPesquisa: Noticia[];
 
-  constructor(private noticiasProvider: NoticiasProvider) {
+  constructor(private noticiasProvider: NoticiasProvider,
+              private navCtrl: NavController) {
 
   }
 
   ionViewDidEnter() {
+    this.iniciouPesquisa = false;
     this.noticiasProvider.obterNoticias().subscribe(noticias => {
       this.todasNoticias = noticias;
-      this.resultadoPesquisa = this.filtrarNoticias(this.termoPesquisa);
+      if (this.barraDePesquisa.value && this.barraDePesquisa.value != "") {
+        this.termoPesquisa = this.barraDePesquisa.value;
+        this.iniciouPesquisa = true;
+        this.resultadoPesquisa = this.filtrarNoticias(this.termoPesquisa);
+      }
     });
     this.focarNaBarraDePesquisa();
   }
@@ -65,7 +71,7 @@ export class PesquisaPage {
    * Ação realizada ao cancelar a pesquisa.
    * @method aoCancelar
    */
-  aoCancelar($event: UIEvent) {
+  aoCancelar(evento: UIEvent) {
     this.termoPesquisa = "";
     this.iniciouPesquisa = false;
   }
@@ -78,5 +84,14 @@ export class PesquisaPage {
    */
   dataFormatada(dataMillis: number): string {
     return new Date(dataMillis).toDateString();
+  }
+
+  /**
+   * Ação realizada ao clicar em uma notícia.
+   * @param {Noticia} noticia que foi clicada
+   * @method aoClicarNoticia
+   */
+  aoClicarNoticia(noticia: Noticia) {
+    this.navCtrl.push(`DetalheNoticiaPage`, {noticia: noticia});
   }
 }
