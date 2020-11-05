@@ -35,10 +35,27 @@ export class NoticiasProvider {
    * @param {string} nome do autor a ser pesquisado
    * @return {Promise<any>} Promise com resultado do DB
    */
-  private procurarAutorDb(nome: string): Promise<any> {
+  procurarAutorDb(nome: string): Promise<any> {
     // TODO refatorar busca e insterção de autor (adicionar validações)
     return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE nome = ?`, [nome]).catch(reason => {
       console.log(`ERRO em procurarAutorDb(${nome}): `, reason);
+    });
+  }
+
+  /**
+   * Retorna do DB um autor.
+   * @method procurarAutorPorId
+   * @param {number} id do autor a ser pesquisado
+   * @return {Promise<any>} Promise com resultado do DB
+   */
+  procurarAutorPorId(id: number): Promise<any> {
+    // TODO refatorar busca e insterção de autor (adicionar validações)
+   return this.database.getDb().executeSql(`SELECT * FROM AUTORES WHERE id = ?`, [id]).then(autor => {
+      if (autor && autor.rows && autor.rows.length > 0) {
+        return Promise.resolve(autor.rows.item(0));
+      }
+    }).catch(reason => {
+      console.log(`ERRO em procurarAutorPorId(${id}): `, reason);
     });
   }
 
@@ -113,7 +130,7 @@ export class NoticiasProvider {
    * @param {number} id da Notícia a ser excluída
    * @return {Promise<any>} Promise com resultado do DB
    */
-  private excluirNoticia(id: number): Promise<any> {
+  excluirNoticia(id: number): Promise<any> {
     let params = [ id ];
     return this.database.getDb()
       .executeSql(`DELETE FROM NOTICIAS WHERE id = ?`, params).catch(reason => {
@@ -128,7 +145,7 @@ export class NoticiasProvider {
    * @param {number} id da Notícia a ser editada
    * @return {Promise<any>} Promise com resultado do DB
    */
-  private editarNoticia(texto: string, id: number): Promise<any> {
+  editarNoticia(texto: string, id: number): Promise<any> {
     let params = [ texto, id ];
     return this.database.getDb()
       .executeSql(`UPDATE NOTICIAS SET texto = ? WHERE id = ?`, params).catch(reason => {

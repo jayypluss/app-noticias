@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { NoticiasProvider } from "../../providers/noticias/noticias";
+import { Noticia } from "../../models/noticia/noticia.model";
 
 @Component({
   selector: 'page-criar-noticia',
@@ -13,10 +14,23 @@ export class CriarNoticiaPage {
   titulo: string = "";
   texto: string = "";
 
-  constructor(public navCtrl: NavController,
-              private alertCtrl: AlertController,
-              private noticiasProvider: NoticiasProvider) {
+  constructor(public navParams: NavParams,
+                    private alertCtrl: AlertController,
+                    private noticiasProvider: NoticiasProvider) {
 
+  }
+
+  async ionViewWillEnter() {
+    let edit = this.navParams.get('edit');
+    if (edit) {
+      let noticia: Noticia = this.navParams.get('noticia');
+      let autorFromDb = await this.noticiasProvider.procurarAutorPorId(noticia.id);
+      if (autorFromDb && autorFromDb.nome) {
+        this.autor = autorFromDb.nome;
+        this.titulo = noticia.titulo;
+        this.texto = noticia.texto;
+      }
+    }
   }
 
   /**
