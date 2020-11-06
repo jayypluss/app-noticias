@@ -35,8 +35,8 @@ page-home {
   ion-item {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
-    max-height: 20rem !important;
-    min-height: 15rem !important;
+    max-height: 45rem !important;
+    min-height: 20rem !important;
     .input-wrapper {
       display: block;
       border-bottom: 1px solid map-get($colors, light) !important;
@@ -86,7 +86,7 @@ page-home {
       text-align: justify;
       white-space: normal;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
     }
   }

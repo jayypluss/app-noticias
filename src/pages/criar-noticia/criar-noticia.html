@@ -1,19 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Criar Notícia
+      {{ editando ? "Editar Notícia" : "Criar Notícia" }}
     </ion-title>
+    <ion-buttons end>
+      <button>
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item class="caixa-de-texto">
     <ion-label floating>Autor</ion-label>
-    <ion-textarea type="text" [(ngModel)]="autor" [disabled]="editando"></ion-textarea>
+    <ion-input type="text" [(ngModel)]="autor" [disabled]="editando"></ion-input>
   </ion-item>
   <ion-item class="caixa-de-texto">
     <ion-label floating>Título</ion-label>
-    <ion-textarea type="text" [(ngModel)]="titulo"></ion-textarea>
+    <ion-input type="text" [(ngModel)]="titulo"></ion-input>
   </ion-item>
   <ion-item class="caixa-de-texto">
     <ion-label floating>Texto</ion-label>

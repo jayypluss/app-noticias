@@ -8,7 +8,6 @@ import { Noticia } from "../../models/noticia/noticia.model";
   templateUrl: 'pesquisa.html'
 })
 export class PesquisaPage {
-  // TODO criar página de detalhamento da notícia
   @ViewChild('barraDePesquisa') barraDePesquisa : Searchbar;
   termoPesquisa: string = "";
   iniciouPesquisa: boolean = false;

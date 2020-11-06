@@ -9,11 +9,8 @@ import { CriarNoticiaPage } from "../criar-noticia/criar-noticia";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // TODO excluir e editar post
-  // TODO criar página de detalhamento da notícia
   // TODO componentizar item de Notícia
-  // TODO estilizar
-  // TODO estilizar mensagem de nenhuma notícia a ser exibida
+  // TODO melhorar estilização
   noticias: Noticia[] = [];
   urlBaseImagem: string = `assets/imgs/`;
 

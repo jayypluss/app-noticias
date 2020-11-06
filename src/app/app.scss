@@ -26,6 +26,10 @@ ion-navbar {
       text-align: start;
     }
   }
+  ion-icon.back-button-icon {
+     font-size: 3.2rem;
+     font-weight: 900;
+  }
   .toolbar-background {
     background-color: map-get($colors, tertiary);
   }

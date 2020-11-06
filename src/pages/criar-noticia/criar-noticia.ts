@@ -14,9 +14,9 @@ enum RESULTADO_OPERACAO {
   templateUrl: 'criar-noticia.html'
 })
 export class CriarNoticiaPage {
-  // TODO estilizar
   // TODO adiconar validações no HTML
   // TODO fazer box de "texto" da notícia expandir com o texto
+  // TODO melhorar estilização
   autor: string = "";
   titulo: string = "";
   texto: string = "";
