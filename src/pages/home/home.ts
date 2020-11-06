@@ -96,9 +96,11 @@ export class HomePage {
   /**
    * Exibe lista de ações para a Notícia selecionada.
    * @method apresentarAcoes
+   * @param {UIEvent} evento evento disparado
    * @param {Noticia} noticia selecionada
    */
-  async apresentarAcoes(noticia: Noticia) {
+  async apresentarAcoes(evento: UIEvent, noticia: Noticia) {
+    evento.stopPropagation();
     const actionSheet = await this.actionSheetController.create({
       title: 'Ações',
       cssClass: 'action-sheet',

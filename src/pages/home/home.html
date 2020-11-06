@@ -13,7 +13,7 @@
       <div class="cabecalho">
         <div class="container-titulo">
           <h1>{{ item.titulo }}</h1>
-          <button (click)="apresentarAcoes(item)">
+          <button (click)="apresentarAcoes($event, item)">
             <ion-icon name="more"></ion-icon>
           </button>
         </div>
