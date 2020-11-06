@@ -5,7 +5,10 @@ page-pesquisa {
       padding-right: 1rem !important;
     }
   }
-  input.searchbar-input {
-    background-color: rgba(255,255,255,0.9) !important;
+  ion-searchbar {
+    padding: 0 !important;
+    input.searchbar-input {
+      background-color: rgba(255,255,255,0.9) !important;
+    }
   }
 }

@@ -10,6 +10,7 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
   templateUrl: 'detalhe-noticia.html',
 })
 export class DetalheNoticiaPage {
+  // TODO adicionar padding ao final da página
   noticia: Noticia;
   urlBaseImagem: string = `assets/imgs/`;
 

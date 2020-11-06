@@ -14,7 +14,6 @@ export class HomePage {
   // TODO componentizar item de Notícia
   // TODO estilizar
   // TODO estilizar mensagem de nenhuma notícia a ser exibida
-  // TODO estilizar mensagem de nenhuma notícia a ser exibida
   noticias: Noticia[] = [];
   urlBaseImagem: string = `assets/imgs/`;
 
