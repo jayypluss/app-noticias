@@ -70,7 +70,7 @@ export class DatabaseProvider {
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               idAutor integer NOT NULL,
               titulo text NOT NULL,
-              idImagem text,
+              imagemBase64 text,
               texto text NOT NULL,
               dataCriacao integer NOT NULL
             )`;

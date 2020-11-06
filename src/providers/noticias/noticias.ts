@@ -21,7 +21,7 @@ export class NoticiasProvider {
         id: i,
         idAutor: i,
         titulo: `Post Titulo ${i}`,
-        idImagem: `image_${i}`,
+        imagemBase64: `image_${i}`,
         texto: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
       }
       mockArray.push(item);
@@ -81,7 +81,7 @@ export class NoticiasProvider {
    * @param {string} texto do autor a ser inserido
    * @return {Promise<any>} Promise com resultado do DB
    */
-  async cadastrarNoticiaNoDb(nomeAutor: string, titulo: string, texto: string): Promise<any> {
+  async cadastrarNoticiaNoDb(nomeAutor: string, titulo: string, texto: string, imagemBase64?: string): Promise<any> {
     let autorResultado = await this.procurarAutorDb(nomeAutor);
     if (!autorResultado || !autorResultado.rows || !autorResultado.rows.length || autorResultado.rows.length < 1)
       autorResultado = this.inserirNovoAutorDb(nomeAutor);
@@ -91,9 +91,14 @@ export class NoticiasProvider {
     if (autorResultado && autorResultado.rows && autorResultado.rows.length && autorResultado.rows.length > 0) {
       autorResultado = autorResultado.rows.item(0);
       let millisHoje = Date.now();
+      let query = `INSERT INTO NOTICIAS (idAutor, titulo, texto, dataCriacao) VALUES (?, ?, ?, ?)`;
       let params = [ autorResultado.id, titulo, texto, millisHoje ];
+      if (imagemBase64) {
+        query = query.replace(`dataCriacao) VALUES (?`, `dataCriacao, imagemBase64) VALUES (?, ?`)
+        params.push(imagemBase64);
+      }
       return this.database.getDb()
-        .executeSql(`INSERT INTO NOTICIAS (idAutor, titulo, texto, dataCriacao) VALUES (?, ?, ?, ?)`, params).catch(reason => {
+        .executeSql(query, params).catch(reason => {
           console.log(`ERRO em cadastrarNoticiaNoDb(${nomeAutor}, ${titulo}, ${texto}): `, reason);
         });
     } else {
@@ -150,9 +155,9 @@ export class NoticiasProvider {
    * @return {Promise<any>} Promise com resultado do DB
    */
   editarNoticia(noticia: Noticia): Promise<any> {
-    let params = [ noticia.titulo, noticia.texto, noticia.id ];
+    let params = [ noticia.titulo, noticia.texto, noticia.imagemBase64, noticia.id ];
     return this.database.getDb()
-      .executeSql(`UPDATE NOTICIAS SET titulo = ?, texto = ? WHERE id = ?`, params).catch(reason => {
+      .executeSql(`UPDATE NOTICIAS SET titulo = ?, texto = ?, imagemBase64 = ? WHERE id = ?`, params).catch(reason => {
         console.log(`ERRO em editarNoticia(${noticia}): `, reason);
       });
   }

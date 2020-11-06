@@ -19,7 +19,7 @@
         </div>
         <h3>{{ item.nomeAutor }}</h3>
       </div>
-      <img *ngIf="item.idImagem" src="{{ urlBaseImagem }}{{ item.idImagem}} ">
+      <img *ngIf="item.imagemBase64" src="{{ item.imagemBase64 }}">
       <p>{{ item.texto }}</p>
     </ion-item>
   </ion-list>

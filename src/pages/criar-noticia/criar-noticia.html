@@ -4,8 +4,11 @@
       {{ editando ? "Editar Notícia" : "Criar Notícia" }}
     </ion-title>
     <ion-buttons end>
-      <button>
-        <ion-icon name="camera"></ion-icon>
+      <button (click)="aoClicarLimpar()" *ngIf="autor.length > 0 || titulo.length > 0 || texto.length > 0 || this.selecionouImagem">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      <button (click)="aoClicarSelecionarFoto()">
+        <ion-icon name="photos"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,9 +23,13 @@
     <ion-label floating>Título</ion-label>
     <ion-input type="text" [(ngModel)]="titulo"></ion-input>
   </ion-item>
+  <div class="image-container">
+    <img *ngIf="imagemBase64" [src]=obterUrlSanitizada(imagemBase64) id="imagemSelecionada" [hidden]="!selecionouImagem" (click)="aoClicarNaImagem()">
+  </div>
+<!--  <img src="assets/imgs/mocks/mock_1.jpg" id="imagemSelecionada" [hidden]="!selecionouImagem" >-->
   <ion-item class="caixa-de-texto">
     <ion-label floating>Texto</ion-label>
-    <ion-textarea type="text" [(ngModel)]="texto"></ion-textarea>
+    <ion-textarea type="text" [(ngModel)]="texto" (input)="aoDigitar($event)"></ion-textarea>
   </ion-item>
 </ion-content>
 <ion-footer>

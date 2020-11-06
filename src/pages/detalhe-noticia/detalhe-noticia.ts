@@ -3,6 +3,7 @@ import { ActionSheetController, IonicPage, NavController, NavParams } from 'ioni
 import { Noticia } from "../../models/noticia/noticia.model";
 import { CriarNoticiaPage } from "../criar-noticia/criar-noticia";
 import { NoticiasProvider } from "../../providers/noticias/noticias";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @IonicPage()
 @Component({
@@ -12,13 +13,14 @@ import { NoticiasProvider } from "../../providers/noticias/noticias";
 export class DetalheNoticiaPage {
   // TODO adicionar padding ao final da página
   noticia: Noticia;
-  urlBaseImagem: string = `assets/imgs/`;
 
   constructor(public navParams: NavParams,
               private actionSheetController: ActionSheetController,
               private noticiasProvider: NoticiasProvider,
-              private navCtrl: NavController) {
+              private navCtrl: NavController,
+              private sanitizer: DomSanitizer) {
     this.noticia = this.navParams.get('noticia');
+    console.log(`Abrindo detalhe de notícia: `, this.noticia)
   }
 
   /**
@@ -70,5 +72,9 @@ export class DetalheNoticiaPage {
    */
   private async aoClicarEditar(noticia: Noticia) {
     await this.navCtrl.push(CriarNoticiaPage, {edit: true, noticia: noticia});
+  }
+
+  obterUrlSanitizada(imagemBase64: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(imagemBase64);
   }
 }

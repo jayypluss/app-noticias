@@ -11,6 +11,7 @@ import { CriarNoticiaPage } from "../pages/criar-noticia/criar-noticia";
 import { NoticiasProvider } from '../providers/noticias/noticias';
 import { DatabaseProvider } from '../providers/database/database';
 import { SQLite } from "@ionic-native/sqlite";
+import { Camera } from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SQLite } from "@ionic-native/sqlite";
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NoticiasProvider,
-    DatabaseProvider
+    DatabaseProvider,
+    Camera
   ]
 })
 export class AppModule {}

@@ -12,7 +12,7 @@ export class HomePage {
   // TODO componentizar item de Notícia
   // TODO melhorar estilização
   noticias: Noticia[] = [];
-  urlBaseImagem: string = `assets/imgs/`;
+  urlBaseImagem: string = `assets/imgs/mocks/mock_1.jpg`;
 
   constructor(private platform: Platform,
               private noticiasProvider: NoticiasProvider,
@@ -28,10 +28,10 @@ export class HomePage {
 
   /**
    * Carrega/Recarrega a listagem de dados, ou seja, a lista de notícias.
-   * @param {Refresher} refresher componente de refresh
+   * @param {Refresher} refresher? componente de refresh
    * @method recarregarDados
    */
-  private async recarregarDados(refresher?: Refresher) {
+  async recarregarDados(refresher?: Refresher) {
     // this.noticias = this.noticiasProvider.criarMockDeNoticias();
     this.noticiasProvider.obterNoticias().subscribe(async (value) => {
       this.noticias = value;

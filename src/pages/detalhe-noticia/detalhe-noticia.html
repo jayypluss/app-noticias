@@ -13,6 +13,6 @@
     </div>
     <h3>{{ noticia.nomeAutor }}</h3>
   </div>
-  <img *ngIf="noticia.idImagem" src="{{ urlBaseImagem }}{{ noticia.idImagem}} ">
+  <img *ngIf="noticia.imagemBase64" [src]=obterUrlSanitizada(noticia.imagemBase64)>
   <p>{{ noticia.texto }}</p>
 </ion-content>

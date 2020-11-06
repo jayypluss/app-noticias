@@ -6,7 +6,7 @@ export class Noticia {
   idAutor: number;
   nomeAutor?: string;
   titulo: string;
-  idImagem?: string;
+  imagemBase64?: string;
   texto: string;
   dataCriacao: number;
 }
