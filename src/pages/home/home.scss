@@ -56,20 +56,20 @@ page-home {
         h1 {
           color: map-get($colors, secondary);
           font-weight: 600;
-          font-size: 2rem;
+          font-size: 2.4rem;
           width: 90%;
           white-space: normal;
         }
         button {
           width: 10%;
           background: transparent;
-          font-size: 2rem;
+          font-size: 2.4rem;
           color: map-get($colors, secondary);
         }
       }
       h3 {
         color: map-get($colors, secondary);
-        padding-top: 0.75rem;
+        padding-top: 0.85rem;
       }
     }
     img {
