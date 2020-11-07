@@ -1,58 +1,76 @@
 page-home {
   ion-content.has-refresher > .scroll-content {
-  //  background-color: map-get($colors, primary);
     border-top: 0;
   }
 
   ion-refresher-content {
+
     .refresher-pulling-icon {
       color: map-get($colors, light);
     }
+
     .refresher-refreshing .spinner-ios line,
     .refresher-refreshing .spinner-ios-small line,
     .refresher-refreshing .spinner-crescent circle {
       stroke: map-get($colors, light);
     }
+
     .refresher-refreshing .spinner-bubbles circle,
     .refresher-refreshing .spinner-circles circle,
     .refresher-refreshing .spinner-dots circle {
       fill: map-get($colors, light);
     }
   }
-  ion-list {
-    //padding-left: 0.5rem;
-    //padding-right: 0.5rem;
-  }
-  p.texto-sem-noticia {
+
+  .container-lista-vazia {
     height: 90%;
+    text-align: center;
     justify-content: center;
     align-items: center;
     display: flex;
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-align: center;
+    flex-direction: column;
+
+    p {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+    }
+
+    img {
+      width: 50%;
+    }
   }
+
   ion-item {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
     max-height: 45rem !important;
     min-height: 20rem !important;
+
     .input-wrapper {
       display: block;
       border-bottom: 1px solid map-get($colors, light) !important;
     }
+
     .item-inner {
       padding: 0 !important;
     }
+
     ion-label {
       margin: 0.75rem 0 2rem !important;
     }
+
     .cabecalho {
       padding-top: 0.75rem;
       padding-left: 0.75rem;
+
       .container-titulo {
         display: inline-flex;
         width: 100%;
+
         h1 {
           color: map-get($colors, secondary);
           font-weight: 600;
@@ -60,6 +78,7 @@ page-home {
           width: 90%;
           white-space: normal;
         }
+
         button {
           width: 10%;
           background: transparent;
@@ -67,6 +86,7 @@ page-home {
           color: map-get($colors, secondary);
         }
       }
+
       h3 {
         color: map-get($colors, secondary);
         padding-top: 0.85rem;
@@ -78,6 +98,7 @@ page-home {
       padding-left: 1rem;
       padding-right: 1rem;
     }
+
     p {
       padding-top: 2rem;
       padding-left: 1rem;

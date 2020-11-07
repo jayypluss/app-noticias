@@ -19,13 +19,16 @@
         </div>
         <h3>{{ item.nomeAutor }}</h3>
       </div>
-      <img *ngIf="item.imagemBase64" src="{{ item.imagemBase64 }}">
+      <img *ngIf="item.imagemBase64" src="{{ item.imagemBase64 }}" alt="imagem-notícia">
       <p>{{ item.texto }}</p>
     </ion-item>
   </ion-list>
 
   <ng-template #semNoticias>
-    <p class="texto-sem-noticia"> Nenhuma notícia a ser exibida. </p>
+    <div class="container-lista-vazia">
+      <p> Nenhuma notícia a ser exibida. </p>
+      <img src="assets/icon.svg">
+    </div>
   </ng-template>
 <!--  <ion-infinite-scroll threshold="100px" (ionInfinite)="carregarMaisNoticias($event)" *ngIf="noticias && noticias.length > 0">-->
 <!--    <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>-->
