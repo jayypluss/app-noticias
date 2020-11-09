@@ -26,15 +26,16 @@ App simples utilizando Ionic 3 para visualização, cadastro e edição de notí
 
 ## Demo
 
-![GIF exbindo abertura do app (Ícone, Splash, Home)](docs/gifs/app-noticias-icon-splash.gif)
 
-![GIF abrindo pages da Tab](docs/gifs/app-noticias-pages.gif)
+<img alt="GIF exbindo abertura do app (Ícone, Splash, Home)" src="docs/gifs/app-noticias-icon-splash.gif" width="250">
 
-![GIF do fluxo de Cadastro](docs/gifs/app-noticias-cadastro.gif)
+<img alt="GIF abrindo pages da Tab" src="docs/gifs/app-noticias-pages.gif" width="250">
 
-![GIF do fluxo de Detalhamento e Editar](docs/gifs/app-noticias-detalhe-editar.gif)
+<img alt="GIF do fluxo de Cadastro" src="docs/gifs/app-noticias-cadastro.gif" width="250">
 
-![GIF do fluxo de Pesquisa](docs/gifs/app-noticias-pesquisa.gif)
+<img alt="GIF do fluxo de Detalhamento e Editar" src="docs/gifs/app-noticias-detalhe-editar.gif" width="250">
+
+<img alt="GIF do fluxo de Pesquisa" src="docs/gifs/app-noticias-pesquisa.gif" width="250">
 
 
 ## Pacotes necessários
