@@ -2,21 +2,39 @@
 
 App simples utilizando Ionic 3 para visualização, cadastro e edição de notícias no banco local (sqlite).
 
+
 ## Sobre o projeto
 
-* CRUD / Cadastro da notícia:
-* * Funções:
-* * * Caastro
-* * * Edição
-* * * Exclusão
-* * Campos:
-* * * Título*
-* * * Texto* (ilimitado)
-* * * Autor* (chave estrangeira para a tabela Autor)
-* * * Imagem
+### CRUD / Cadastro da notícia:
 
-(*) Obrigatório.
+#### Funções:
 
+* Cadastro
+* Edição
+* Exclusão
+
+
+#### Campos:
+
+* Título*
+* Texto* (ilimitado)
+* Autor* (chave estrangeira para a tabela Autor)
+* Imagem
+
+**Obrigatório.*
+
+
+## Demo
+
+![GIF exbindo abertura do app (Ícone, Splash, Home)](docs/gifs/app-noticias-icon-splash.gif)
+
+![GIF abrindo pages da Tab](docs/gifs/app-noticias-pages.gif)
+
+![GIF do fluxo de Cadastro](docs/gifs/app-noticias-cadastro.gif)
+
+![GIF do fluxo de Detalhamento e Editar](docs/gifs/app-noticias-detalhe-editar.gif)
+
+![GIF do fluxo de Pesquisa](docs/gifs/app-noticias-pesquisa.gif)
 
 
 ## Pacotes necessários
@@ -31,10 +49,10 @@ App simples utilizando Ionic 3 para visualização, cadastro e edição de notí
 ### Instalando as dependências no Arch Linux
 
 Instalar o nodejs, npm, jdk8, gradle usando o gerenciador de pacotes (pacman): 
-> `pacman -S nodejs npm jdk8-openjdk gradle`
+`pacman -S nodejs npm jdk8-openjdk gradle`
 
 Então instalar o ionic e o cordova utilizando o npm:
-> `sudo npm install -g ionic cordova`
+`sudo npm install -g ionic cordova`
 
 
 #### Build 
@@ -42,17 +60,20 @@ Então instalar o ionic e o cordova utilizando o npm:
 ###### Android 
 
 Para buildar o pacote **Android**:
-> `npm install`
-> `ionic cordova prepare android`
+```
+npm install
+ionic cordova prepare android
+```
 
 #### Run
 
 ###### Android
 
 Para **rodar** o app no **Android**:
-> `npm install`
-> `ionic cordova run android`
-
+```
+npm install
+ionic cordova run android
+```
 
 ## Versões utilizadas para o build
 
