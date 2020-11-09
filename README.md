@@ -5,21 +5,45 @@ App simples utilizando Ionic 3 para visualização, cadastro e edição de notí
 
 ## Sobre o projeto
 
-### CRUD / Cadastro da notícia:
+### Tela de Listagem de Notícias (Home)
+
+#### Funções:
+
+* Acesso a uma lista com as Notícias salvas no banco local
+* Acesso ao detalhamento de cada Notícia ao clicar sobre seu card
+* Acesso às ações para cada Notícia (excluir, editar)
+
+
+### Tela de Detalhamento da Notícia
+
+#### Funções:
+
+* Acesso aos dados da Notícia incluindo texto completo
+* Acesso às ações da Notícia (excluir, editar)
+
+
+### Tela de Pesquisa
+
+#### Funções:
+
+* Pesquisar notícia por Título, Autor ou Texto
+* Acesso às ações da Notícia (excluir, editar)
+
+
+### Tela de CRUD / Cadastro da notícia:
 
 #### Funções:
 
 * Cadastro
 * Edição
-* Exclusão
 
-
-#### Campos:
+##### Campos do cadastro:
 
 * Título*
 * Texto* (ilimitado)
 * Autor* (chave estrangeira para a tabela Autor)
 * Imagem
+* Data de criação (auto-gerado)
 
 **Obrigatório.*
 
