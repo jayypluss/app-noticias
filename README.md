@@ -114,15 +114,15 @@ global packages:
 
 local packages:
 
-    @ionic/app-scripts : 3.2.3
+    @ionic/app-scripts : 3.2.4
     Cordova Platforms  : android 7.1.4
-    Ionic Framework    : ionic-angular 3.9.2
+    Ionic Framework    : ionic-angular 3.9.9
 
 System:
 
     Android SDK Tools : 26.1.1
     Node              : v8.10.0
     npm               : 5.6.0 
-    OS                : xxxx
+    OS                : Linux X.X
 
 ```
