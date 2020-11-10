@@ -118,6 +118,12 @@ rm -rf node_modules/@types
 ionic cordova run android
 ```
 
+Se for necessário gerar os ícones novamente, utilize o `cordova-res@0.9.0`
+
+Para instalá-lo globalmente: `npm i -g cordova-res@0.9.0`
+
+Para rodar: `cordova-res android`
+
 ## Versões utilizadas para o build
 
 Do output do comando `ionic info`:
