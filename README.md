@@ -94,9 +94,9 @@ ou
 
 ###### Android 
 
-1- Instalar dependências (`npm install`)
-2- Caso ocorra um erro ao buildar por conta do node_modules/@types, remova este diretório (`rm -rf node_modules/@types`) antes de rodar o `ionic cordova`
-3- Rodar (`ionic cordova run android`) ou apenas buildar (`ionic cordova prepare android`) com o ionic cordova
+1. Instalar dependências (`npm install`)
+2. Caso ocorra um erro ao buildar por conta do node_modules/@types, remova este diretório (`rm -rf node_modules/@types`) antes de rodar o `ionic cordova`
+3. Rodar (`ionic cordova run android`) ou apenas buildar (`ionic cordova prepare android`) com o ionic cordova
 
 Para apenas buildar o pacote **Android**:
 ```
