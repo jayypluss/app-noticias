@@ -1,8 +1,8 @@
 {
   "name": "app-noticias",
-  "app_id": "",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "app_id": ""
 }
