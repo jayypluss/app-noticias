@@ -69,15 +69,22 @@ App simples utilizando Ionic 3 para visualização, cadastro e edição de notí
 * [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Gradle](https://docs.gradle.org/current/userguide/installation.html)
 * [ionic, cordova](https://ionicframework.com/docs/intro/installation/)
-* * Usando npm para instalar o _ionic_: `sudo npm install -g ionic cordova`
 
 ### Instalando as dependências no Arch Linux
+
+#### Versões utilizadas:
+
+- ionic@3.20.1 
+- cordova@8.1.2
+- node 8.10.0
+- npm 5.6.0
+- Java JDK8
 
 Instalar o nodejs, npm, jdk8, gradle usando o gerenciador de pacotes (pacman): 
 `pacman -S nodejs npm jdk8-openjdk gradle`
 
 Então instalar o ionic e o cordova utilizando o npm:
-`sudo npm install -g ionic cordova`
+`sudo npm install -g ionic@3.20.1 cordova@8.1.2`
 
 
 #### Build 
