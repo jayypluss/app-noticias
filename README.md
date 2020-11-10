@@ -1,6 +1,7 @@
 # App Notícias
 
-App simples utilizando Ionic 3 para visualização, cadastro e edição de notícias no banco local (sqlite).
+App simples utilizando Ionic para visualização, cadastro e edição de notícias no banco local (sqlite).
+Por conta dos pacotes e versões utilizadas, o projeto não roda como página web e apenas foi testado no Android.
 
 
 ## Sobre o projeto
@@ -84,6 +85,8 @@ Instalar o nodejs, npm, jdk8, gradle usando o gerenciador de pacotes (pacman):
 `pacman -S nodejs npm jdk8-openjdk gradle`
 
 Então instalar o ionic e o cordova utilizando o npm:
+`npm install -g ionic@3.20.1 cordova@8.1.2`
+ou
 `sudo npm install -g ionic@3.20.1 cordova@8.1.2`
 
 
@@ -91,9 +94,14 @@ Então instalar o ionic e o cordova utilizando o npm:
 
 ###### Android 
 
-Para buildar o pacote **Android**:
+1- Instalar dependências (`npm install`)
+2- Caso ocorra um erro ao buildar por conta do node_modules/@types, remova este diretório (`rm -rf node_modules/@types`) antes de rodar o `ionic cordova`
+3- Rodar (`ionic cordova run android`) ou apenas buildar (`ionic cordova prepare android`) com o ionic cordova
+
+Para apenas buildar o pacote **Android**:
 ```
 npm install
+rm -rf node_modules/@types
 ionic cordova prepare android
 ```
 
@@ -104,6 +112,7 @@ ionic cordova prepare android
 Para **rodar** o app no **Android**:
 ```
 npm install
+rm -rf node_modules/@types
 ionic cordova run android
 ```
 
