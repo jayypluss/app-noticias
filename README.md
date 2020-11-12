@@ -86,8 +86,6 @@ Instalar o nodejs, npm, jdk8, gradle usando o gerenciador de pacotes (pacman):
 
 Então instalar o ionic e o cordova utilizando o npm:
 `npm install -g ionic@3.20.1 cordova@8.1.2`
-ou
-`sudo npm install -g ionic@3.20.1 cordova@8.1.2`
 
 
 #### Build 
